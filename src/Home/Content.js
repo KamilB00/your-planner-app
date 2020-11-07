@@ -1,7 +1,7 @@
-import React from 'react'
-import mac_iphone from './pngs/mac_iphone.png' 
+import React from 'react';
+import mac_iphone from './pngs/mac_iphone.png';
 import Button from '@material-ui/core/Button';
-import "./Content.css"
+import "./Content.css";
 const Content = () => {
     return (
         
