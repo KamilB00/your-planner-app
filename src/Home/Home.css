@@ -21,22 +21,22 @@
   
 }
 .home_text_small{
- margin-top: 150px;
+margin-top: 150px;
 color: white;
 font-weight: 200;
 font-size: 25px;
-animation-name: smallTextAnimation;
+/* animation-name: smallTextAnimation;
 animation-duration: 3s;  
-animation-fill-mode: forwards;
+animation-fill-mode: forwards; */
 padding-top: 120px;
 
 }
 
 .home_text {
-  transition-timing-function: ease-in;
-  transition: all 0.4s;
+  /* transition-timing-function: ease-in;
+  transition: all 0.4s; */
   display: flex;
- margin-bottom: 40px;
+  margin-bottom: 40px;
   justify-content: center;
   align-self: center;
   font-size: 50px;
@@ -45,15 +45,16 @@ padding-top: 120px;
   z-index: 1;
   color: white;
   position: relative;
-  animation-name: bigTextAnimation;
+  /* animation-name: bigTextAnimation;
   animation-duration: 2s;  
-  animation-fill-mode: forwards;
+  animation-fill-mode: forwards; */
 }
+
 .home_text_mobile{
   display: none;
   transition-timing-function: ease-in;
   transition: all 0.4s;
- margin-bottom: 40px;
+  margin-bottom: 40px;
   justify-content: center;
   align-self: center;
   font-size: 50px;
