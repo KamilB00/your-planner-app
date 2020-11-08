@@ -20,13 +20,13 @@ export const Header = (props) => {
 
   const buttonLook = makeStyles({
     buttonSignUp: {
-      display: 'flex',
-      alignItems: 'center', 
+      alignContent: 'center', 
       justifyContent: 'center',
       backgroundColor: 'white',
       color: '#0087FF',
-      height: '30px',
+      height: '40px',
       textTransform: 'none',
+      display: "flex",
       '&:hover': {
         backgroundColor: 'white',
         color: '#0087FF',
@@ -67,7 +67,6 @@ export const Header = (props) => {
     <>
     <IconContext.Provider value={{color: '#fff'}} >
     <div className={sidebar ? `header_navbar open` : 'header_navbar'}>
-
     
     <div className={sidebar ? `header_logo_box open` : 'header_logo_box'}>
           <Link to="/">

@@ -72,7 +72,7 @@ padding-top: 120px;
   width: 100%;
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
   z-index: -1.5;
-  margin-bottom: -150px
+  margin-bottom: -150px;
 }
 
 
@@ -139,6 +139,12 @@ padding-top: 120px;
     font-size: 30px;
   }
 
+}
+
+@media screen and (min-height: 500px){
+  .home{
+    max-height: 1200px;
+}
 }
 
 /* iphone 6,7,8 PLUS horizontally */
