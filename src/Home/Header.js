@@ -20,6 +20,9 @@ export const Header = (props) => {
 
   const buttonLook = makeStyles({
     buttonSignUp: {
+      display: 'flex',
+      alignItems: 'center', 
+      justifyContent: 'center',
       backgroundColor: 'white',
       color: '#0087FF',
       height: '30px',
@@ -29,7 +32,6 @@ export const Header = (props) => {
         color: '#0087FF',
         boxShadow: "0px 0px 50px",
         transition: "0.3s color",
-
       },
 
     }
