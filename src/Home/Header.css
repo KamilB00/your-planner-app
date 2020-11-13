@@ -7,10 +7,16 @@
   width: 100vw;
   align-items: center;
   padding-top: 10px;
+  position: fixed;
+  right: 0;
+  left: 0;
 }
 
 .header_navbar.open{
 flex-direction: column;
+position: fixed;
+right: 0;
+left: 0;
 }
 
 .header {
@@ -215,7 +221,9 @@ flex-direction: column;
     display: flex;
   }
   .header_navbar {
+  
     justify-content: space-between;
+
   }
   .header__navBox {
     display: none;

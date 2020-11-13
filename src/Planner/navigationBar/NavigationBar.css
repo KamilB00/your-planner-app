@@ -1,5 +1,7 @@
 .menu { 
     background-color: #2c8fff;
+    position: sticky;
+    top: 0;
 }
 .menuinner{
     height: 40px;

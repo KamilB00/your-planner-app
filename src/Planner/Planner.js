@@ -23,9 +23,8 @@ const Planner = (props) => {
         numberOfTasks={getFilterdByDateTasks().length}
       />
       <br/>
-      <br/>
+      
       <AddToDo />
-      <br />
       <Menu />
       <div style={{ display: 'flex',width:'100%',justifyContent: 'center'}}>
 
