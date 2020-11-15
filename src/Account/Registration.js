@@ -5,11 +5,12 @@ import {Button} from '@material-ui/core'
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import {Link} from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import {setAuthentication, setJwt} from './../Store/actions/index'
-import { Server } from "miragejs";
+import { setAuthentication, setJwt} from './../Store/actions/index'
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import logo_dark from "../Home/pngs/logo_dark.png";
+import AuthService from './auth.service';
+import { useHistory } from "react-router-dom";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -33,35 +34,33 @@ const useStyles = makeStyles((theme) => ({
       
     },
   }));
-  
-  new Server({
-    routes() {
-      this.namespace = "api";
-  
-      this.get("/signup", () => {
-        return "token";
-      });
 
-    }
-  });
 
 export const Registration = (props) => {
   const classes = useStyles();
   const classes2 = useStyles2();
+  let history = useHistory();
 
 
-  const signup = (username, password) => {
-
-  fetch("/api/signup").then(response => {
-      if (!response.ok) throw Error(response.statusText);
-      return response.text();
-    }).then(function(value){  
-        props.setJwt(value)
-        props.setAuthentication(true)
-      })
+const signup = () => {
+  console.log(props)
+  AuthService.register(username, username, password).then(
+    result => {
+      if(result.status===200){
+        console.log("true")
+        localStorage.setItem("user", result.data);
+        localStorage.setItem('authenticated', true);
+        history.push('/planner')
+      }
+    }
+  );
 }
 
 const [open, setOpen] = React.useState(false);
+const [username, setUsername] = React.useState("");
+const [password, setPassword] = React.useState("");
+// eslint-disable-next-line 
+const [cpassword, setCPassword] = React.useState("");
 
 
 const handleClose = (event, reason) => {
@@ -70,7 +69,6 @@ const handleClose = (event, reason) => {
   }
   setOpen(false);
 };
-
 
 
 
@@ -88,24 +86,42 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 
-  return (props.authenticated?<Redirect to='/Planner' />:
+  return (localStorage.getItem('authenticated')==='true'?<Redirect to='/Planner' />:
       <div>
           <img src={logo_dark} alt=""></img>
           <br></br>
           <div className={classes2.root}>
 
-            <TextField id="standard-basic" label="nickname"></TextField><br></br>
-            <TextField label="password" type="password"></TextField> <br></br>
-            <TextField label="confirm password" type="password"></TextField> <br></br><br></br> 
+            <TextField  id="standard-basic" label="username" onChange={event => setUsername(event.target.value)} ></TextField><br></br>
+            <TextField  error={cpassword!==password} label="password" type="password" onChange={event => setPassword(event.target.value)}></TextField> <br></br>
+            <TextField  error={cpassword!==password} label="confirm password" type="password" onChange={event => setCPassword(event.target.value)} ></TextField> <br></br><br></br> 
           </div>     
-  
+          <div>
+          </div>  
+
+          <div>
+            {cpassword!==password?
+              <div style={{color: "red"}}>Passwords must match!</div>
+              :<div></div>
+            }
+            {username.length>0&&username.length<5?
+              <div style={{color: "red"}}>Username has to be longer than 4 letters!</div>
+              :<div></div>
+            }
+            {(password.length>0&&cpassword.length>0)&&(password.length<5||cpassword.length)<5?
+              <div style={{color: "red"}}>Passwords have to be longer than 4 letters!</div>
+              :<div></div>
+            }
+          </div>
+
           <div className={classes.root}>
-              <Link className="Registration" to='/login'>Or sign up</Link><br></br><br></br>  
+              <Link className="Registration" to='/login'>Or sign in</Link><br></br><br></br>  
               <div className="signinbutton">
-                <ColorButton variant="contained" onClick={signup} color="primary">sign up </ColorButton>
+                <ColorButton disabled={cpassword!==password||password.length<5||cpassword.length<5||username.length<5} variant="contained" onClick={signup} color="primary">Sign up</ColorButton>
               </div>
               
           </div>
+         
 
           <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
             <Alert onClose={handleClose} severity="error">Username or password is wrong!</Alert>
@@ -117,14 +133,13 @@ const ColorButton = withStyles((theme) => ({
 }
 
 const mapStateToProps = (state) => ({
-    authenticated: state.authenticated,
-    jwt: state.jwt
+    authenticated: state.authentication.authenticated,
+    jwt: state.authentication.jwt
 
 })
 
 const mapDispatchToProps = {
   setJwt, setAuthentication
-    
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Registration)
