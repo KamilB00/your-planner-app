@@ -1,22 +1,26 @@
 {
   "name": "your-planner-app",
+  "engines": {
+    "node": ">=14.4.0"
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@material-ui/lab": "^4.0.0-alpha.56",
-    "miragejs": "^0.1.40",
-    "react-router-dom": "^5.2.0",
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
+    "@material-ui/lab": "^4.0.0-alpha.56",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.6.4",
+    "axios": "^0.21.0",
+    "miragejs": "^0.1.40",
     "moment": "^2.27.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-window": "^1.8.5",
     "redux": "^4.0.5"
@@ -60,6 +64,5 @@
     "react-scripts": "3.4.1",
     "react-window": "^1.8.5",
     "redux": "^4.0.5"
-    
   }
 }
