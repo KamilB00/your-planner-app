@@ -1,6 +1,6 @@
 const initialState = {
   authenticated: false,
-  jwt: "sss",
+  jwt: "",
 };
 
 const authentication = (state = initialState, action) => {

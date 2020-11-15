@@ -21,9 +21,6 @@ const navLook = makeStyles({
 
 const classes = navLook();
     const logout = () =>{
-        localStorage.setItem('authenticated', false)
-        localStorage.setItem('user', null)
-        history.push("/")
     }
     return (
         <div className="menu">
