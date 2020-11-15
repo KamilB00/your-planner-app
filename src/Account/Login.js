@@ -7,16 +7,24 @@ import { setAuthentication, setJwt } from "./../Store/actions/index";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
+import { Server } from "miragejs";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import logo_dark from "../Home/pngs/logo_dark.png";
-import AuthService from "./auth.service";
-import { useHistory } from "react-router-dom";
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
+new Server({
+  routes() {
+    this.namespace = "api";
+
+    this.get("/signin", () => {
+      return "token";
+    });
+  },
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,30 +44,22 @@ const useStyles2 = makeStyles((theme) => ({
 }));
 
 export const Login = (props) => {
-  let history = useHistory();
   const classes = useStyles();
   const classes2 = useStyles2();
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("")
-  const [open, setOpen] = React.useState(false);
 
-  const signin = () => {
-    AuthService.login(username, password).then(
-      result => {
-        
-        localStorage.setItem("user", result.data);
-        localStorage.setItem('authenticated', true);
-        history.push('/planner')
-        
-        
-      }
-    ).catch(err=>
-      {
-        setOpen(true)
-      });  
+  const signin = (username, password) => {
+    fetch("/api/signin")
+      .then((response) => {
+        if (!response.ok) throw Error(response.statusText);
+        return response.text();
+      })
+      .then(function (value) {
+        props.setJwt(value);
+        props.setAuthentication(true);
+      });
   };
 
- 
+  const [open, setOpen] = React.useState(false);
 
   const handleClose = (event, reason) => {
     if (reason === "clickaway") {
@@ -81,26 +81,26 @@ export const Login = (props) => {
     },
   }))(Button);
 
-  return localStorage.getItem('authenticated')==='true' ? (
-    <Redirect to="/Planner"/>
+  return props.authenticated ? (
+    <Redirect to="/Planner" />
   ) : (
     <div>
       <img src={logo_dark} alt=""></img>
       <div className={classes2.root}>
-        <TextField id="standard-basic" label="nickname" onChange={event => setUsername(event.target.value)}></TextField>
+        <TextField id="standard-basic" label="nickname"></TextField>
         <br></br>
-        <TextField label="password" type="password" onChange={event => setPassword(event.target.value)}></TextField>
+        <TextField label="password" type="password"></TextField>
         <br></br>
         <br></br>
       </div>
       <div className={classes.root}>
         <Link className="Link" to="/registration">
-          Or sign up
+          Or sign in
         </Link>
         <br></br>
         <br></br>
         <div className="signinbutton">
-          <ColorButton disabled={username.length<5||password.length<5} variant="contained" onClick={signin} color="primary">
+          <ColorButton variant="contained" onClick={signin} color="primary">
             {" "}
             Sign in{" "}
           </ColorButton>
