@@ -8,7 +8,7 @@ import AddToDo from "./plannerCore/AddToDo"
 import { Redirect } from "react-router-dom";
 import Menu from './plannerCore/Menu';
 import { Button } from "@material-ui/core";
-import taskService from "./requsts/task-service";
+import taskService from "./requests/task-service";
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 
