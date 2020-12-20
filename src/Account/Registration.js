@@ -87,7 +87,7 @@ const ColorButton = withStyles((theme) => ({
 }))(Button);
 
 
-  return (localStorage.getItem('authenticated')==='true'?<Redirect to='/Planner' />:
+  return (localStorage.getItem('authenticated')==='true'?<Redirect to='/planner' />:
       <div>
           <img src={logo_dark} alt=""></img>
           <br></br>

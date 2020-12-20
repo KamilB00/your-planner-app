@@ -12,6 +12,7 @@ import MuiAlert from "@material-ui/lab/Alert";
 import logo_dark from "../Home/pngs/logo_dark.png";
 import AuthService from "./auth.service";
 import { useHistory } from "react-router-dom";
+import TaskService from '../Planner/requests/task-service'
 
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
@@ -49,6 +50,7 @@ export const Login = (props) => {
         
         localStorage.setItem("user", result.data);
         localStorage.setItem('authenticated', true);
+        console.log(TaskService.getAllTasks());
         history.push('/planner')
         
         
@@ -82,7 +84,7 @@ export const Login = (props) => {
   }))(Button);
 
   return localStorage.getItem('authenticated')==='true' ? (
-    <Redirect to="/Planner"/>
+    <Redirect to="/planner"/>
   ) : (
     <div>
       <img src={logo_dark} alt=""></img>
