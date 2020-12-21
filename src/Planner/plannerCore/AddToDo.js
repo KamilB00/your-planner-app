@@ -4,8 +4,10 @@ import { addTask } from "../../Store/actions";
 import Dropdown from "../reusableComponents/Dropdown";
 import { TimePicker } from "antd";
 import moment from "moment";
+import {addTask as addTaskToApi} from "../requests/task-service";
 import "./AddToDo.css";
 import "antd/dist/antd.css";
+
 
 export const AddToDo = (props) => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -23,6 +25,14 @@ export const AddToDo = (props) => {
       setShowTime("");
       setText(""); //request TODO
       clearSelectedOption();
+
+      addTaskToApi(text,selectedOption,duration,props.date.day)
+
+      console.log(text);
+      console.log(selectedOption);
+      console.log(duration);
+      console.log(props.date.day);
+
     }
   };
   
@@ -111,6 +121,7 @@ export const AddToDo = (props) => {
 };
 const mapStateToProps = (state) => ({
   date: state.date,
+  
 });
 
 export default connect(mapStateToProps, { addTask })(AddToDo);

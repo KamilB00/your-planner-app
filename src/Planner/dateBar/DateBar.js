@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react'
+import React, {useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import {nextDay, previousDay, setDay} from '../../Store/actions'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
@@ -9,19 +9,22 @@ import './DateBar.css'
 
 export const DateBar = (props) => {
 
+    
+    const [displayDate, setDisplayDate] = useState("");
 
     useEffect(() => {
-        const d = new Date()
-        const ye = new Intl.DateTimeFormat('en', { year: 'numeric' }).format(d)
-        const mo = new Intl.DateTimeFormat('en', { month: 'short' }).format(d)
-        const da = new Intl.DateTimeFormat('en', { day: '2-digit' }).format(d)
         
-        props.setDay(`${da} ${mo} ${ye}`)
+        const d = new Date()
+        const ye = new Intl.DateTimeFormat('pl', { year: 'numeric' }).format(d)
+        const mo = new Intl.DateTimeFormat('pl', { month: 'numeric' }).format(d)
+        const da = new Intl.DateTimeFormat('pl', { day: 'numeric' }).format(d)
 
-        return () => {
-        }
+        
+        props.setDay(`${ye}-${mo}-${da}`);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
+   
+
     const goNextDay=()=>{
         props.nextDay()
     }

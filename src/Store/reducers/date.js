@@ -3,15 +3,13 @@ const initialState = {
 };
 
 const addDays = (d, days) => {
-  console.log(d);
+  
   var date = new Date(Date.parse(d));
-  console.log(date);
   date.setDate(date.getDate() + days);
-  console.log(date);
   const ye = new Intl.DateTimeFormat("en", { year: "numeric" }).format(date);
-  const mo = new Intl.DateTimeFormat("en", { month: "short" }).format(date);
-  const da = new Intl.DateTimeFormat("en", { day: "2-digit" }).format(date);
-  return `${da} ${mo} ${ye}`;
+  const mo = new Intl.DateTimeFormat("en", { month: "numeric" }).format(date);
+  const da = new Intl.DateTimeFormat("en", { day: "numeric" }).format(date);
+  return `${ye}-${mo}-${da}`;
 };
 
 const date = (state = initialState, action) => {

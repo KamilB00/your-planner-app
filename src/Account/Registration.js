@@ -44,7 +44,7 @@ export const Registration = (props) => {
 
 
 const signup = () => {
-  console.log(props)
+ 
   AuthService.register(username, username, password).then(
     result => {
       if(result.status===200){
