@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useEffect} from "react";
 import { connect } from "react-redux";
 import NavigationBar from "./navigationBar/NavigationBar";
 import DateBar from "./dateBar/DateBar";
@@ -8,17 +9,28 @@ import AddToDo from "./plannerCore/AddToDo"
 import { Redirect } from "react-router-dom";
 import Menu from './plannerCore/Menu';
 import { Button } from "@material-ui/core";
-import taskService from "./requests/task-service";
+import {getAllTasks,hello} from "./requests/task-service";
+import {addTask} from '../Store/actions'
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
+ 
 
+const Planner = (props) => {
+  
+useEffect(() => {
+
+  getAllTasks().then(response => response.data.map((task) => props.addTask(task.name,task.category,false,task.duration,dateParse(task.date)))); 
+
+}, [])
+
+
+const dateParse = (date) => {
+  return date.slice(0,10);
+}
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
 
-
-const Planner = (props) => {
-  
   const getFilterdByDateTasks = () => {
     return (props.tasks.filter((t) => t.date === props.day));
   }
@@ -26,7 +38,7 @@ const Planner = (props) => {
   const [open, setOpen] = React.useState(false);
 
   const getHello = () => {
-    taskService.hello().then(response=>{
+    hello().then(response=>{
       setMessage(response)
       setOpen(true)
     })
@@ -73,6 +85,4 @@ const mapStateToProps = (state) => ({
   day: state.date.day
 });
 
-const mapDispatchToProps = {};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Planner);
+export default connect(mapStateToProps, {addTask})(Planner);

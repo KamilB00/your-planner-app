@@ -21,6 +21,10 @@ export const setDay = (day) => ({
   day,
 });
 
+export const userLogOut = () => ({
+  type: 'USER_LOGOUT',
+});
+
 export const setChosenTask = (chosenTask) => {
   return {
     type: "SET_CHOSEN_TASK",

@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import {useHistory} from 'react-router-dom'
 import {makeStyles} from '@material-ui/core/styles'
 import logo512_YP from '../../Home/pngs/logo512_YP.png'
-
+import {userLogOut} from '../../Store/actions'
 
 export const NavigationBar = (props) => {
    
@@ -24,6 +24,7 @@ const classes = navLook();
         localStorage.setItem('authenticated', false)
         localStorage.setItem('user', null)
         history.push("/")
+        props.userLogOut();
     }
     return (
         <div className="menu">
@@ -39,11 +40,8 @@ const classes = navLook();
 }
 
 const mapStateToProps = (state) => ({
-    
+   
 })
 
-const mapDispatchToProps = {
-    
-}
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavigationBar)
+export default connect(mapStateToProps, {userLogOut})(NavigationBar)

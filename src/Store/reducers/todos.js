@@ -1,64 +1,7 @@
 const initialState = {
-  allTasks: [
-    {
-      id: 100,
-      initialDuration: 15000,
-      durationLeft: 15000,
-      completed: true,
-      title: "first task",
-      category: "",
-      isRunning: false,
-      date: "31 Oct 2020",
-      isTimeLimited: false,
-    },
-    {
-      id: 101,
-      initialDuration: 15000,
-      durationLeft: 15000,
-      completed: false,
-      title: "second task",
-      category: "",
-      isRunning: true,
+  allTasks: [],
 
-      date: "30 Oct 2020",
-
-      isTimeLimited: true,
-    },
-    {
-      id: 102,
-      initialDuration: 15000,
-      durationLeft: 15000,
-      completed: false,
-      title: "third task",
-      category: "",
-      isRunning: false,
-      date: "31 Oct 2020",
-      isTimeLimited: false,
-    },
-    {
-      id: 103,
-      initialDuration: 190000,
-      durationLeft: 190000,
-      completed: false,
-      title: "fourth task",
-      category: "",
-      isRunning: true,
-      date: "31 Oct 2020",
-      isTimeLimited: true,
-    },
-  ],
-
-  chosenTask: {
-    id: 101,
-    initialDuration: 15000,
-    durationLeft: 5000,
-    completed: false,
-    title: "second task",
-    category: "",
-    isRunning: false,
-    date: "31 Oct 2020",
-    isTimeLimited: true,
-  }
+  chosenTask: {}
 };
 
 const todos = (state = initialState, action) => {
@@ -91,6 +34,9 @@ const todos = (state = initialState, action) => {
         allTasks: state.allTasks.filter((todo) => todo.id !== action.id),
       };
 
+      case "USER_LOGOUT":
+        return state = initialState;
+          
     case "ALTER_TASK":
       return {
         ...state,
