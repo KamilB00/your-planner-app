@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import Dropdown from "../reusableComponents/Dropdown";
 import { TimePicker } from "antd";
 import moment from "moment";
-import {addTask} from "../../Store/actions/task-service";
+import {addTask,fetchTasks} from "../../Store/actions/task-service";
 import "./AddToDo.css";
 import "antd/dist/antd.css";
 
@@ -116,5 +116,8 @@ export const AddToDo = (props) => {
 const mapStateToProps = (state) => ({
   date: state.date,
 });
-
-export default connect(mapStateToProps, { addTask })(AddToDo);
+const mapDispatchToProps = {
+  addTask,
+  fetchTasks
+}
+export default connect(mapStateToProps,mapDispatchToProps)(AddToDo);

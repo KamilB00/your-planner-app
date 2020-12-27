@@ -14,10 +14,12 @@ export const fetchTasks = () => async dispatch =>{
   dispatch({type: 'FETCH_TASKS', payload: task}))
 }
 
-export const addTask = (text,category,duration,date) => async dispatch => {
-   const response = await axios.post( API_URL +"tasks/", {done: false,name: text,category: category,duration: duration,date: date},{headers: authHeader()});
+export const addTask = (text,category,duration,date) => async (dispatch) => {
   
-   dispatch({type: 'ADD_TASK', payload: response.data});
+   await axios.post( API_URL +"tasks/", {done: false,name: text,category: category,duration: duration,date: date},{headers: authHeader()})
+   .then(
+     dispatch({type: 'ADD_TASK', payload: {text: text,category: category, duration: duration,isTimeLimited: duration > 0 ? true : false,date: date}})
+   )
 }
 export const toggleTask = (id) => async dispatch => {
   const response = await axios.put(API_URL + "tasks/",{headers: authHeader()})

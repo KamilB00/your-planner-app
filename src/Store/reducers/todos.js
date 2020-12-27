@@ -9,7 +9,7 @@ const todos = (state = initialState, action) => {
     case "ADD_TASK":
       return {
         ...state,
-        allTasks: state.allTasks.concat({
+          allTasks: state.allTasks.concat({
           title: action.payload.text,
           completed: false,
           category: action.payload.category,
