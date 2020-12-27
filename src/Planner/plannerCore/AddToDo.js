@@ -24,6 +24,7 @@ export const AddToDo = (props) => {
       setShowTime("");
       setText(""); //request TODO
       clearSelectedOption();
+      
     }
   };
   
@@ -46,11 +47,7 @@ export const AddToDo = (props) => {
       duration,
       props.date.day
     );
-
-    console.log(text);
-    console.log(selectedOption);
-    console.log(duration);
-    console.log(props.date.day);
+    setTimeout(()=>props.fetchTasks(), 30);
     }
   const onFormSubmit = (event) => {
     console.log("ref: ", ref.current);
@@ -63,6 +60,7 @@ export const AddToDo = (props) => {
       setShowTime("");
       setDuration(0);
       clearSelectedOption();
+      
     } else event.preventDefault();
   };
 

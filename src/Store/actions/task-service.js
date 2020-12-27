@@ -17,9 +17,9 @@ export const fetchTasks = () => async dispatch =>{
 export const addTask = (text,category,duration,date) => async (dispatch) => {
   
    await axios.post( API_URL +"tasks/", {done: false,name: text,category: category,duration: duration,date: date},{headers: authHeader()})
-   .then(
-     dispatch({type: 'ADD_TASK', payload: {text: text,category: category, duration: duration,isTimeLimited: duration > 0 ? true : false,date: date}})
-   )
+  //  .then(
+  //    dispatch({type: 'ADD_TASK', payload: {text: text,category: category, duration: duration,isTimeLimited: duration > 0 ? true : false,date: date}})
+  //  )
 }
 export const toggleTask = (id) => async dispatch => {
   const response = await axios.put(API_URL + "tasks/",{headers: authHeader()})
@@ -31,8 +31,9 @@ export const editTask = (formValues) => async dispatch => {
     dispatch({type: 'EDIT_TASK', payload: response.data});
 }
 
-export const deleteTask = (id) => async dispatch => {
-     await axios.delete(API_URL + `tasks/${id}`,{},{headers: authHeader()});
-     dispatch({type: 'DELETE_TASK', payload: id});
+export const removeTask = (id) => async dispatch => {
+     await axios.delete(API_URL + `tasks/${id}`,{headers: authHeader()}).then(
+     dispatch({type: 'REMOVE_TASK', payload: {id: id}})
+     );
 }
 

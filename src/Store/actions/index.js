@@ -39,12 +39,12 @@ export const toggleTodo = (id) => {
   };
 };
 
-export const removeTask = (id) => {
-  return {
-    type: "REMOVE_TASK",
-    id,
-  };
-};
+// export const removeTask = (id) => {
+//   return {
+//     type: "REMOVE_TASK",
+//     id,
+//   };
+// };
 
 export const addCategory = (label) => {
   return {
