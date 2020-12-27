@@ -1,3 +1,4 @@
+var taskId = 0;
 const initialState = {
   allTasks: [],
   chosenTask: {}
@@ -52,7 +53,7 @@ const todos = (state = initialState, action) => {
     case "REMOVE_TASK":
       return {
         ...state,
-        allTasks: state.allTasks.filter((todo) => todo.id !== action.id),
+        allTasks: state.allTasks.filter((todo) => todo.id !== action.payload.id),
       };
 
       case "USER_LOGOUT":

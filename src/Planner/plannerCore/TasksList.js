@@ -7,7 +7,6 @@ import noTasksInFilterFound from '../../Home/pngs/noTasksInFilterFound.jpeg'
 
 const TasksList = (props) => {
 
-
   const showSelectedTasks = (tasks) => {
     switch (props.visibility) {
       case "SHOW_ALL":
@@ -70,7 +69,6 @@ const TasksList = (props) => {
    </List.Item>
 
   ));
-
   if (returnedList.length === 0 ) {
     return (
       showSelectedImage()
