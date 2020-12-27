@@ -9,8 +9,7 @@ import AddToDo from "./plannerCore/AddToDo"
 import { Redirect } from "react-router-dom";
 import Menu from './plannerCore/Menu';
 import { Button } from "@material-ui/core";
-import {getAllTasks,hello} from "./requests/task-service";
-import {addTask} from '../Store/actions'
+import {addTask,fetchTasks,hello} from '../Store/actions/task-service'
 import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
  
@@ -19,14 +18,10 @@ const Planner = (props) => {
   
 useEffect(() => {
 
-  getAllTasks().then(response => response.data.map((task) => props.addTask(task.name,task.category,false,task.duration,dateParse(task.date)))); 
-
+  props.fetchTasks();
 }, [])
 
 
-const dateParse = (date) => {
-  return date.slice(0,10);
-}
 function Alert(props) {
   return <MuiAlert elevation={6} variant="filled" {...props} />;
 }
@@ -85,4 +80,9 @@ const mapStateToProps = (state) => ({
   day: state.date.day
 });
 
-export default connect(mapStateToProps, {addTask})(Planner);
+const mapDispatchToProps = {
+  addTask,
+  fetchTasks
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Planner);

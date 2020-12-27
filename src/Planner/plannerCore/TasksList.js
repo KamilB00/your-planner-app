@@ -60,15 +60,15 @@ const TasksList = (props) => {
         return "Error: Unknown filter";
     }
   };
-  // tasks => przefiltrowane po dacie taski (przekazywane )
+  // tasks => przefiltrowane po dacie taski (przekazywane)
   
-  const returnedList = showSelectedTasks(props.tasks).map((task,index) => (
-  <List.Item key={index}>
+  const returnedList = showSelectedTasks(props.tasks).map((task) => (
+  <List.Item key={task.id}>
     <div style={{width: '100%'}}>
       <Task task={task}></Task>
     </div>
-
    </List.Item>
+
   ));
 
   if (returnedList.length === 0 ) {

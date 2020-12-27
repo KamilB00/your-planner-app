@@ -1,16 +1,15 @@
 import React, { useRef, useState} from "react";
 import { connect } from "react-redux";
-import { addTask } from "../../Store/actions";
 import Dropdown from "../reusableComponents/Dropdown";
 import { TimePicker } from "antd";
 import moment from "moment";
-import {addTask as addTaskToApi} from "../requests/task-service";
+import {addTask} from "../../Store/actions/task-service";
 import "./AddToDo.css";
 import "antd/dist/antd.css";
 
 
 export const AddToDo = (props) => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState(""); //category
   const [duration, setDuration] = useState(0);
   const [text, setText] = useState("");
   const [showTime, setShowTime] = useState("");
@@ -25,39 +24,34 @@ export const AddToDo = (props) => {
       setShowTime("");
       setText(""); //request TODO
       clearSelectedOption();
-
-      addTaskToApi(text,selectedOption,duration,props.date.day)
-
-      console.log(text);
-      console.log(selectedOption);
-      console.log(duration);
-      console.log(props.date.day);
-
     }
   };
   
   const onTimeChange = (time, timeString) => {
-    var d = new moment(timeString, "HH:mm:ss");
 
+    var d = new moment(timeString, "HH:mm:ss");
     var hours = d.hours() * 3600000;
     var minutes = d.minutes() * 60000;
     var seconds = d.seconds() * 1000;
-
     var milis = hours + minutes + seconds;
 
     setShowTime(time);
     setDuration(milis);
   };
 
-  const add = () =>
+  const add = () =>{
     props.addTask(
       text,
       selectedOption,
-      duration !== 0 ? true : false, //isTimeLimited
       duration,
       props.date.day
     );
 
+    console.log(text);
+    console.log(selectedOption);
+    console.log(duration);
+    console.log(props.date.day);
+    }
   const onFormSubmit = (event) => {
     console.log("ref: ", ref.current);
     console.log("event: ", event.target);
@@ -121,7 +115,6 @@ export const AddToDo = (props) => {
 };
 const mapStateToProps = (state) => ({
   date: state.date,
-  
 });
 
 export default connect(mapStateToProps, { addTask })(AddToDo);

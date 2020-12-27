@@ -1,25 +1,46 @@
 const initialState = {
   allTasks: [],
-
   chosenTask: {}
 };
 
 const todos = (state = initialState, action) => {
   switch (action.type) {
+    
     case "ADD_TASK":
       return {
         ...state,
         allTasks: state.allTasks.concat({
-          title: action.text,
+          title: action.payload.text,
           completed: false,
-          id: action.id,
-          category: action.category,
+          category: action.payload.category,
           isRunning: false,
-          duration: action.duration,
-          isTimeLimited: action.isTimeLimited,
-          date: action.date,
+          duration: action.payload.duration,
+          isTimeLimited: action.payload.isTimeLimited,
+          date: action.payload.date,
         }),
       };
+
+      case 'FETCH_TASKS':
+      let index  = state.allTasks.findIndex(task => task.id === action.payload.id);
+      if (index > -1) {
+          return state;
+      }
+      else {
+        return {
+          ...state,  allTasks: state.allTasks.concat({
+            id: action.payload.id,
+            title: action.payload.name,
+            completed: action.payload.done,
+            category: action.payload.category,
+            isRunning: false,
+            duration: action.payload.duration,
+            isTimeLimited: action.payload.timeLimited,
+            date: action.payload.date.slice(0,10),
+          })
+        }
+      }
+      
+
     case "TOGGLE_TODO":
       return {
         ...state,

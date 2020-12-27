@@ -4,7 +4,6 @@ import { TextField } from "@material-ui/core";
 import { Button } from "@material-ui/core";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { setAuthentication, setJwt } from "./../Store/actions/index";
-import { addTask } from "./../Store/actions/index";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import "./Login.css";
@@ -12,7 +11,6 @@ import Snackbar from "@material-ui/core/Snackbar";
 import MuiAlert from "@material-ui/lab/Alert";
 import logo_dark from "../Home/pngs/logo_dark.png";
 import AuthService from "./auth.service";
-import taskService from "../Planner/requests/task-service";
 import { useHistory } from "react-router-dom";
 
 

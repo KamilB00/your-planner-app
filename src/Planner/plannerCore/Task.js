@@ -15,7 +15,7 @@ const Task = (props) => {
   let history = useHistory();
 
   const [play, setPlay] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(props.todos.chosenTask.durationLeft);
+  //const [timeLeft, setTimeLeft] = useState(props.todos.chosenTask.durationLeft);
 
   
   const styleBox = {
@@ -29,9 +29,9 @@ const Task = (props) => {
     alignSelf: 'center'
   };
 
-  useEffect(() => {
-    setTimeLeft(props.todos.chosenTask.durationLeft);
-  }, [props.todos.chosenTask.durationLeft]);
+  // useEffect(() => {
+  //   setTimeLeft(props.todos.chosenTask.durationLeft);
+  // }, [props.todos.chosenTask.durationLeft]);
 
   const handlePlayClick = () => {
     setPlay(!play);
@@ -123,7 +123,7 @@ const Task = (props) => {
         {props.task.isRunning ? (
         <Box style={styleBox}>
           <div style={{display: 'flex',height: '100%',alignItems: 'center'}}>
-             {formatTime(timeLeft)}
+             {/* {formatTime(timeLeft)} */}
           </div>
         </Box>
       ) : (

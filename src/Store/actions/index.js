@@ -1,4 +1,3 @@
-let nextTaskId = 0;
 
 export const nextDay = () => ({
   type: "NEXT_DAY",
@@ -32,17 +31,6 @@ export const setChosenTask = (chosenTask) => {
   };
 };
 
-export const addTask = (text, category, isTimeLimited, duration, date) => {
-  return {
-    type: "ADD_TASK",
-    id: nextTaskId++,
-    text,
-    category,
-    isTimeLimited,
-    duration,
-    date,
-  };
-};
 
 export const toggleTodo = (id) => {
   return {
@@ -110,4 +98,5 @@ export const VisibilityFilters = {
   SHOW_COMPLETED: "SHOW_COMPLETED",
   SHOW_ACTIVE: "SHOW_ACTIVE",
 };
+
 
