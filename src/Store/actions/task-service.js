@@ -25,6 +25,7 @@ export const toggleTask = (id) => async dispatch => {
   const response = await axios.put(API_URL + "tasks/",{headers: authHeader()})
   dispatch({type: 'TOGGLE_TASK', payload: response.data});
 } 
+
 export const editTask = (formValues) => async dispatch => {
     const response = await axios.put(API_URL + "tasks/",formValues,{headers: authHeader()})
 

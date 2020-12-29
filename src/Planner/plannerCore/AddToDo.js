@@ -47,7 +47,7 @@ export const AddToDo = (props) => {
       duration,
       props.date.day
     );
-    setTimeout(()=>props.fetchTasks(), 30);
+    setTimeout(()=>props.fetchTasks(), 100);
     }
   const onFormSubmit = (event) => {
     console.log("ref: ", ref.current);
