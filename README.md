@@ -1,3 +1,3 @@
-# Your Planer 
+# Your Planner 
 Web application helping with time managment 
 https://your-planner.herokuapp.com
