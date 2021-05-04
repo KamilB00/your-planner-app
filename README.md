@@ -1,5 +1,5 @@
 # Your Planner
- 
+
 [Your Planner](https://your-planner.herokuapp.com/) is web application created to help managing time and tracking active tasks. 
 
 ### Application functionality : 
@@ -14,7 +14,7 @@
 - User can choose time bounds of the task
 - User can run, stop or finish task timer countdown 
 - User can view the timer on the browse bar and on the separate screen
-- 
+  
 
 ### Tech :
 - React
@@ -41,5 +41,5 @@
 #### *Timer*
 #
 ![main app](https://user-images.githubusercontent.com/57325544/116985498-db733b00-accc-11eb-8781-d4ecd3f11d75.png "Main Application")
-
 #### *Registry Panel*
+#
