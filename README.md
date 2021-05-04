@@ -1,5 +1,5 @@
 # Your Planner
-## About 
+ 
 [Your Planner](https://your-planner.herokuapp.com/) is web application created to help managing time and tracking active tasks. 
 
 ### Application functionality : 
